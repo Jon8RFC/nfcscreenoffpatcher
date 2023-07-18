@@ -13,7 +13,8 @@ RUN curl -sLO https://github.com/pxb1988/dex2jar/releases/download/2.0/dex-tools
 RUN unzip -q dex-tools-2.0.zip
 RUN rm dex2jar-2.0/*.bat
 RUN mkdir -p /export/lib/
-RUN curl -sL https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.4.0.jar > /export/apktool.jar
+#RUN curl -sL https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.6.1.jar > /export/apktool.jar
+COPY apktool-2.6.2-9db742.jar /export/apktool.jar
 RUN curl -sL https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool > /export/apktool
 RUN cp -a /sdk/build-tools/26.0.1/apksigner /sdk/build-tools/26.0.1/zipalign /dex2jar-2.0/* /export/
 RUN cp -a /sdk/build-tools/26.0.1/lib/apksigner.jar /export/lib/
@@ -33,8 +34,8 @@ WORKDIR /app/
 ADD requirements.txt . 
 RUN pip3 install -r requirements.txt
 
-RUN wget -O baksmali.jar https://bitbucket.org/JesusFreke/smali/downloads/baksmali-2.4.0.jar
-RUN wget -O smali.jar https://bitbucket.org/JesusFreke/smali/downloads/smali-2.4.0.jar
+RUN wget -O baksmali.jar https://bitbucket.org/JesusFreke/smali/downloads/baksmali-2.5.2.jar
+RUN wget -O smali.jar https://bitbucket.org/JesusFreke/smali/downloads/smali-2.5.2.jar
 ADD server.py patcher.py disassemble.sh assemble.sh disassemble_odex.sh assemble_odex.sh free-space.sh ./
 
 EXPOSE 8000

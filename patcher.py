@@ -39,10 +39,10 @@ class Patcher:
     subprocess.run(['./assemble.sh', self.extract_dir, self.apk_name])
 
   def get_smali_dir(self):
-    possible_folders = ['smali', 'smali_classes2']
+    possible_folders = ['smali', 'smali_classes1', 'smali_classes2', 'smali_classes3']
     for folder in possible_folders:
       path = f'{self.extract_dir}/{self.apk_name}/{folder}'
-      if os.path.exists(f'{path}/com'):
+      if os.path.exists(f'{path}/com/android/nfc'):
         return path 
 
     return None
@@ -95,8 +95,8 @@ class Patcher:
         lines[i] = line
 
       # patch sound
-      #if insert_index:
-      #  lines = lines[:insert_index] + ['return-void\n'] + lines[insert_index:]
+      if insert_index:
+        lines = lines[:insert_index] + ['return-void\n'] + lines[insert_index:]
 
     with open(path, 'w') as fd:
       fd.writelines(lines)
