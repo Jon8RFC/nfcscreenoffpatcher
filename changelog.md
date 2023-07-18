@@ -2,11 +2,11 @@
 
 ### v1.1.0 (jon8rfc) 2023-07-xx
 #### ADD
-* pre-patch verify: server connectivity (no client upload waiting if down)
-  * creates & uses root index.html (/app/data/indexl.html)
-* custom HTTP status response codes 545 & 555
-  * CLEAR distinction between a possible patching failure and anything else, client-side
-  * some textual feedback, client-side
+* pre-patch verify: server connectivity (no upload waiting if down)
+  * uses root index.html
+* custom HTTP status response codes 545 & 555 (server.py & NFCScreenOff Magisk module v0.4.0+ customize.sh)
+  * distinction between patching failure and anything else (server.py & customize.sh)
+  * optional textual messages with abort/resume functionality within module (server.py & customize.sh)
 * optional saving of failed-to-patch zip file for custom HTTP status codes failures (server.py)
 * build.prop version/sdk for troubleshooting
 #### CHANGE
