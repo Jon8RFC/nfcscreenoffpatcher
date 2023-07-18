@@ -1,4 +1,37 @@
-# From [Lapwat's NfcScreenOffPie repository](https://github.com/lapwat/NfcScreenOffPie/) on 2019-11-15:
+# Start Jon8RFC's Readme portion
+## Docker setup on Windows
+1. Install Docker, update WSL if instructed
+   * 🟥 **do _NOT_** click on restart when Docker prompts--close applications and use the start menu to restart! 🟥
+2. Download and unzip this repo
+3. Run in cmd ```docker build --no-cache "C:\nfcscreenoffpatcher-master" -t patcher/patcher:latest``` _(builds, names, tags the image)_
+4. Run in cmd ```docker run -p 8000:8000 --name patcher patcher/patcher``` _(binds the port, creates & starts the container)_
+5. Stop the container in Docker _(unsure if it gracefully closes from cmd)_
+6. Run in cmd ```docker builder prune``` _(cleans up remnants/junk from any vestigial or failed builds)_
+7. Start the container in Docker whenever you want it
+   * (optional) Run in cmd ```docker update --restart always patcher``` _(starts the container when you run docker)_  
+
+File locations of WSL and Docker configs:  
+```"C:\Users\%USERNAME%\.wslconfig"```  
+```"C:\Users\%USERNAME%\AppData\Roaming\Docker\settings.json"```  
+You'd create .wslconfig yourself, maybe with:  
+```
+[wsl2]
+memory=4GB
+processors=8
+#swap=0 #swap memory max, defaults to 25% of memory size on Windows rounded up to the nearest GB
+```
+### NFCScreenOff magisk module
+Edit the customize.sh file's PATCH_URL to your computer's IP running the Docker patcher, such as: ```http://192.168.1.30:8000```
+
+### Manual apk viewing
+I like apktool and notepad++, but you can use dex2jar and something like [JD-GUI](http://java-decompiler.github.io/) ([github](https://github.com/java-decompiler/jd-gui)) for a different and conglomerated viewing of the decompiled apk.  
+* Run in cmd ```apktool d NfcNci.apk```, then edit files in text viewer  
+* Run in cmd ```d2j-dex2jar.bat -f -o NfcNci.jar NfcNci.apk```, then open in JD-GUI  
+
+⠀⠀
+⠀⠀
+⠀⠀
+# Start [Lapwat's NfcScreenOffPie readme](https://github.com/lapwat/NfcScreenOffPie/) from 2019-11-15:
 # Tools
 - adb
 - apktool
