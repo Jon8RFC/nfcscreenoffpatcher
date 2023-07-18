@@ -2,8 +2,8 @@
 
 ### v1.1.0 (jon8rfc) 2023-07-xx
 #### ADD
-* pre-patch verify: server connectivity (no upload waiting if down)
-  * uses root index.html
+* pre-patch verify: server connectivity (no client upload waiting if down)
+  * creates & uses root index.html (/app/data/indexl.html)
 * custom HTTP status response codes 545 & 555
   * CLEAR distinction between a possible patching failure and anything else, client-side
   * some textual feedback, client-side
