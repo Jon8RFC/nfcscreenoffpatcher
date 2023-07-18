@@ -1,4 +1,4 @@
-# Start Jon8RFC's Readme portion
+# Start Jon8RFC's readme portion
 ## Docker setup on Windows
 1. Install Docker, update WSL if instructed
    * 🟥 **do _NOT_** click on restart when Docker prompts--close applications and use the start menu to restart! 🟥
