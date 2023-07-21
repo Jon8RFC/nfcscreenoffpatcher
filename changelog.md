@@ -7,7 +7,8 @@
   * distinction between patching failure and anything else (server.py & customize.sh)
   * optional textual messages with abort/resume functionality within module (server.py & customize.sh)
 * optional saving of failed-to-patch zip file for custom HTTP status codes failures (server.py)
-* build.prop version/sdk for troubleshooting
+* build.prop version/sdk and module version, for troubleshooting
+* simple landing/home page
 #### CHANGE
 * save client-side UNIX date as "DATE_ID" in stats.csv, replacing/unifying server-side UNIX date instead of "timestamp"
   * improves troubleshooting when someone shares info with their DATE_ID
