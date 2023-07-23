@@ -20,7 +20,7 @@
 #### UPDATE
 * smali folders to include smali_classes4 through smali_classes9
 * Android build tools from rev 26.0.1 (Jul 2017) to rev 34.0.0 rc4 (May 2023)
-* apktool from v2.6.2 (2022-12-09) to v2.8.0 (2023-07-17)
+* apktool from v2.6.2 (2022-12-09) to v2.8.1 (2023-07-22)
 * dex2jar from pxb1988 v2.0 (2015-06-09) to ThexXTURBOXx v64 (2023-07-20)
 * smali & baksmali from v2.5.2 (2021-03-03) to v3.0.3 (2023-04-27)
 #### NOTES
