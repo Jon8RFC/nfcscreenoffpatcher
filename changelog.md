@@ -3,7 +3,7 @@
 ### v1.1.0 (jon8rfc) 2023-07-22
 #### ADD
 * pre-patch verify: server connectivity (no upload waiting if down)
-* custom HTTP status response codes 545 & 555 (server.py & NFCScreenOff Magisk module v0.4.0+ customize.sh)
+* custom HTTP status response codes 545 & 555 (server.py & NFCScreenOff Magisk module v2.0.0+ customize.sh)
   * distinction between patching failure and anything else (server.py & customize.sh)
   * optional textual messages with abort/resume functionality within module (server.py & customize.sh)
 * optional saving of failed-to-patch zip file for custom HTTP status codes failures (server.py)
