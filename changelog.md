@@ -1,6 +1,6 @@
 # Changelog
 
-### v1.1.0 (jon8rfc) 2023-07-xx
+### v1.1.0 (jon8rfc) 2023-07-22
 #### ADD
 * pre-patch verify: server connectivity (no upload waiting if down)
 * custom HTTP status response codes 545 & 555 (server.py & NFCScreenOff Magisk module v0.4.0+ customize.sh)
