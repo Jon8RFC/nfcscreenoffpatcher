@@ -10,7 +10,7 @@ curl -sL https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/li
 curl -sL https://dl.google.com/android/repository/build-tools_r34-rc4-linux.zip -o buildtools.zip && \
 curl -sL https://github.com/iBotPeaches/Apktool/releases/download/v2.8.1/apktool_2.8.1.jar -o /dedroid/apktool.jar && \
 #curl -k --digest -sL http://127.0.0.1/androidtools/apktool-cli-all.jar -o /dedroid/apktool.jar && \
-curl -sL https://github.com/ThexXTURBOXx/dex2jar/releases/download/v64/dex-tools-2.1-SNAPSHOT.zip -o dextools.zip && \
+curl -sL https://github.com/ThexXTURBOXx/dex2jar/releases/download/v72/dex-tools-2.1-SNAPSHOT.zip -o dextools.zip && \
 unzip -q dextools.zip -d /dextools/ && \
 unzip -q buildtools.zip -d /buildtools/ && \
 rm /dextools/*/*.bat && \
