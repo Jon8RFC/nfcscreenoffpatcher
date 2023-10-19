@@ -1,5 +1,21 @@
 # Changelog
 
+### v1.1.1 (jon8rfc) 2023-10-xx
+#### FIX
+* v1.0.0 http status 200 from disallowing a failure state to report
+* **-WIP-** *possible* Android 13 fix
+#### ADD
+* Android 14 support
+* custom HTTP status response code 535 if a known incompatibility exists
+  * since I can't yet figure out textual responses from within a failed upload process
+#### CHANGE
+* 
+#### UPDATE
+* apktool to v2.9.0
+* dex2jar to v74
+#### NOTES
+
+---
 ### v1.1.0 (jon8rfc) 2023-09-06
 #### ADD
 * pre-patch verify: server connectivity (no upload waiting if down)
