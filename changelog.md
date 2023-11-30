@@ -1,9 +1,9 @@
 # Changelog
 
-### v1.1.1 (jon8rfc) 2023-10-xx
+### v1.1.1 (jon8rfc) 2023-10-19
 #### FIX
 * v1.0.0 http status 200 from disallowing a failure state to report
-* **-WIP-** *possible* Android 13 fix
+* Android 13 and prior fix for disappearing NFC setting and eventual screen off dysfunction
 #### ADD
 * Android 14 support
 * custom HTTP status response code 535 if a known incompatibility exists
