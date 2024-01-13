@@ -48,6 +48,16 @@ class HTTPRequestHandler(server.SimpleHTTPRequestHandler):
 			patcher = Patcher.factory(extract_dir)
 			patcher.disassemble()
 
+			# temporarily disable patching for known fail states
+			#if patcher.sdk >= '34':
+			#	patcher.clean()
+			#	patcher.log_stats('fail-SDK-34')
+			#	self.send_response(535)
+			#	self.send_header('Content-type', 'text/html')
+			#	self.end_headers()
+			#	self.wfile.write(bytes('Test', 'utf-8'))
+			#	return
+
 			# check that apk has been successfully disassembled
 			if not patcher.is_successfully_disassembled():
 				# manufacturer = patcher.manufacturer.replace(' ', '')
@@ -67,8 +77,8 @@ class HTTPRequestHandler(server.SimpleHTTPRequestHandler):
 			patcher.assemble()
 
 			# write aligned apk in response
-			self.send_response(200)
 			with open(f'{extract_dir}/{patcher.apk_name}_align.apk', 'rb') as apk:
+				self.send_response(200)
 				self.send_header("Content-Type", 'application/vnd.android.package-archive')
 				fs = os.fstat(apk.fileno())
 				self.send_header("Content-Length", str(fs[6]))
@@ -77,11 +87,15 @@ class HTTPRequestHandler(server.SimpleHTTPRequestHandler):
 
 			patcher.clean()
 			patcher.log_stats()
+
 		except Exception as error:
 			print(timestamp, error)
 			patcher.clean()
 			patcher.log_stats('exception')
-			self.send_error(555)
+			self.send_response(555)
+			self.send_header('Content-type', 'text/html')
+			self.end_headers()
+			self.wfile.write(bytes('Exception', 'utf-8'))
 			# Rename the failed patch zip file with the DATE_ID (both lines)
 			#failed_patch_filename = f'{patcher.date_id}.zip'
 			#os.rename(filename, failed_patch_filename)
