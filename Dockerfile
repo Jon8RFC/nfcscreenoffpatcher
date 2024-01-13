@@ -4,13 +4,13 @@ RUN apk add --no-cache curl zip py-pip python3 && \
 mkdir -p /dedroid/lib/ /dedroid/lib64/ /lib64/ && \
 curl -sL https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool > /dedroid/apktool && \
 # get below new URL versions from:
-# https://androidsdkmanager.azurewebsites.net/Buildtools
+# https://androidsdkoffline.blogspot.com/p/android-sdk-build-tools.html
 # https://github.com/iBotPeaches/Apktool/releases/
 # https://github.com/ThexXTURBOXx/dex2jar/releases/
-curl -sL https://dl.google.com/android/repository/build-tools_r34-rc4-linux.zip -o buildtools.zip && \
-curl -sL https://github.com/iBotPeaches/Apktool/releases/download/v2.9.0/apktool_2.9.0.jar -o /dedroid/apktool.jar && \
+curl -sL https://dl.google.com/android/repository/build-tools_r34-linux.zip -o buildtools.zip && \
+curl -sL https://github.com/iBotPeaches/Apktool/releases/download/v2.9.2/apktool_2.9.2.jar -o /dedroid/apktool.jar && \
 #curl -k --digest -sL http://127.0.0.1/androidtools/apktool-cli-all.jar -o /dedroid/apktool.jar && \
-curl -sL https://github.com/ThexXTURBOXx/dex2jar/releases/download/v74/dex-tools-2.1-SNAPSHOT.zip -o dextools.zip && \
+curl -sL https://github.com/ThexXTURBOXx/dex2jar/releases/download/2.4.11/dex-tools-2.4.11.zip -o dextools.zip && \
 unzip -q dextools.zip -d /dextools/ && \
 unzip -q buildtools.zip -d /buildtools/ && \
 rm /dextools/*/*.bat && \
