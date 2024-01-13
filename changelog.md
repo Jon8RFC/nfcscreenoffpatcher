@@ -8,12 +8,11 @@
 * Android 14 support
 * custom HTTP status response code 535 if a known incompatibility exists
   * since I can't yet figure out textual responses from within a failed upload process
-#### CHANGE
-* 
 #### UPDATE
-* apktool to v2.9.0
-* dex2jar to v74
+* apktool to v2.9.2
+* dex2jar to v2.4.11
 #### NOTES
+* added my batch file for easy Docker Container setup on Windows, after Docker has been installed
 
 ---
 ### v1.1.0 (jon8rfc) 2023-09-06
