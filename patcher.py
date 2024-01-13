@@ -74,17 +74,43 @@ class Patcher:
 			fd.write(f'"{self.date_id}","{self.mod_ver}","{self.manufacturer}","{self.model}","{self.device}","{self.rom}","{self.release}","{self.sdk}","{self.apk_name}","{self.on_unlocked_value}","{smali_dir}","{self.strategy}","{status}","{date_iso}"\n')
 
 	def patch_ScreenStateHelper(self):
+
 		path = f'{self.smali_dir}/com/android/nfc/ScreenStateHelper.smali'
 		with open(path) as fd:
 			lines = fd.readlines()
-			for i, line in enumerate(lines):
-				if 'SCREEN_STATE_ON_UNLOCKED' in line:
-					self.on_unlocked_value = line.strip().split(' ')[-1]
-				if 'checkScreenState' in line:
-					insert_index = i + 2
 
-			lines = lines[:insert_index] + [f'const/16 v0, {self.on_unlocked_value}\n', 'return v0\n'] + lines[insert_index:]
-		
+		on_unlocked_value = None
+		insert_index = None
+		method_start = None
+		method_end = None
+
+		for i, line in enumerate(lines):
+			if 'SCREEN_STATE_ON_UNLOCKED' in line:
+				on_unlocked_value = line.strip().split(' ')[-1]
+				break
+
+		if not on_unlocked_value:
+			for i, line in enumerate(lines):
+				if '.method static screenStateToString' in line:
+					method_start = i
+				elif '.end method' in line and method_start is not None:
+					method_end = i
+					break
+
+			for i in range(method_start, method_end + 1):
+				if 'ON_UNLOCKED' in lines[i]:
+					for j in range(i - 1, method_start - 1, -1):
+						if 'const/' in lines[j]:
+							on_unlocked_value = lines[j].strip().split(' ')[-1]
+							break
+
+		for i, line in enumerate(lines):
+			if 'checkScreenState' in line:
+				insert_index = i + 2
+				if on_unlocked_value:
+					lines = lines[:insert_index] + [f'const/16 v0, {on_unlocked_value}\n', 'return v0\n'] + lines[insert_index:]
+				break
+
 		with open(path, 'w') as fd:
 			fd.writelines(lines)
 
@@ -96,11 +122,12 @@ class Patcher:
 				if 'playSound(' in line:
 					insert_index = i + 2
 
-				line = line.replace('SCREEN_OFF', 'SCREEN_OFF_DISABLED')
-				line = line.replace('SCREEN_ON', 'SCREEN_ON_DISABLED')
-				line = line.replace('USER_PRESENT', 'USER_PRESENT_DISABLED')
-				line = line.replace('USER_SWITCHED', 'USER_SWITCHED_DISABLED')
-				lines[i] = line
+				# these appear to be what breaks the service after some time, and also causes crashes in android 14
+				#line = line.replace('SCREEN_OFF', 'SCREEN_OFF_DISABLED')
+				#line = line.replace('SCREEN_ON', 'SCREEN_ON_DISABLED')
+				#line = line.replace('USER_PRESENT', 'USER_PRESENT_DISABLED')
+				#line = line.replace('USER_SWITCHED', 'USER_SWITCHED_DISABLED')
+				#lines[i] = line
 
 			# patch sound
 			if insert_index:
