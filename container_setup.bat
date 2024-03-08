@@ -15,7 +15,7 @@ echo.
 echo -----
 echo Building from Dockerfile...
 echo -----
-docker build --no-cache . -f Dockerfile_updated -t %name%/%name%:latest --squash
+docker build --no-cache . -f Dockerfile -t %name%/%name%:latest --squash
 echo.
 echo.
 echo -----
