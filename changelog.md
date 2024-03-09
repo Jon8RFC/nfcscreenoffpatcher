@@ -1,5 +1,19 @@
 # Changelog
 
+### v1.1.2 (jon8rfc) 2023-03-08
+#### FIX
+* Android 13 and prioor patching
+#### ADD
+* apktool v2.8.1
+* pythonunbuffered to dockerfile to view more verbose logs
+#### CHANGE
+* apktool v2.8.1 & v2.9.2 dual functionality for both Android 13 and prior & Android 14 support
+#### UPDATE
+* dex2jar to v2.4.15
+#### NOTES
+* apktool v2.9.2 --aapt1 flag did not support Android 13 and prior in my experience
+* dex2jar v2.4.16 & apktool v2.9.3(or v3.0.0) will require smali/baksmali v3.0.5
+
 ### v1.1.1 (jon8rfc) 2023-10-19
 #### FIX
 * v1.0.0 http status 200 from disallowing a failure state to report
