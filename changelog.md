@@ -14,6 +14,7 @@
 * apktool v2.9.2 --aapt1 flag did not support Android 13 and prior in my experience
 * dex2jar v2.4.16 & apktool v2.9.3(or v3.0.0) will require smali/baksmali v3.0.5
 
+---
 ### v1.1.1 (jon8rfc) 2023-10-19
 #### FIX
 * v1.0.0 http status 200 from disallowing a failure state to report
