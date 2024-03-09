@@ -2,7 +2,7 @@
 
 ### v1.1.2 (jon8rfc) 2023-03-08
 #### FIX
-* Android 13 and prioor patching
+* Android 13 and prior patching
 #### ADD
 * apktool v2.8.1
 * pythonunbuffered to dockerfile to view more verbose logs
