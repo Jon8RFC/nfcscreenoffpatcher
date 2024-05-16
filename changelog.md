@@ -1,6 +1,6 @@
 # Changelog
 
-### v1.1.2 (jon8rfc) 2023-03-08
+### v1.1.2 (jon8rfc) 2024-03-08
 #### FIX
 * Android 13 and prior patching
 #### ADD
