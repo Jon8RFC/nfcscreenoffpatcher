@@ -8,6 +8,8 @@ class Patcher:
 		env = dotenv_values(f'{extract_dir}/.env')
 
 		date_id = env.get('DATE_ID')
+		repatch = env.get('REPATCH')
+		repatch_date_id = env.get('REPATCH_DATE_ID')
 		mod_ver = env.get('MOD_VER')
 		manufacturer = env.get('MANUFACTURER')
 		model = env.get('MODEL')
@@ -15,17 +17,21 @@ class Patcher:
 		rom = env.get('ROM')
 		release = env.get('RELEASE')
 		sdk = env.get('SDK')
+		apk_dir = env.get('APK_DIR')
 		apk_name = env.get('APK_NAME')
 		strategy = env.get('STRATEGY')
 
 		if strategy == 'odex':
-			return PatcherOdex(extract_dir, date_id, mod_ver, manufacturer, model, device, rom, release, sdk, apk_name, 'odex')
+			return PatcherOdex(extract_dir, date_id, repatch, repatch_date_id, mod_ver, manufacturer, model, device, rom, release, sdk, apk_dir, apk_name, 'odex')
 
-		return Patcher(extract_dir, date_id, mod_ver, manufacturer, model, device, rom, release, sdk, apk_name, 'classic')
+		return Patcher(extract_dir, date_id, repatch, repatch_date_id, mod_ver, manufacturer, model, device, rom, release, sdk, apk_dir, apk_name, 'classic')
 
-	def __init__(self, extract_dir, date_id, mod_ver, manufacturer, model, device, rom, release, sdk, apk_name, strategy):
+	def __init__(self, extract_dir, date_id, repatch, repatch_date_id, mod_ver, manufacturer, model, device, rom, release, sdk, apk_dir, apk_name, strategy):
+    
 		self.extract_dir = extract_dir
 		self.date_id = date_id
+		self.repatch = repatch
+		self.repatch_date_id = repatch_date_id
 		self.mod_ver = mod_ver
 		self.manufacturer = manufacturer
 		self.model = model
@@ -33,6 +39,7 @@ class Patcher:
 		self.rom = rom
 		self.release = release
 		self.sdk = sdk
+		self.apk_dir = apk_dir
 		self.apk_name = apk_name
 		self.strategy = strategy
 		self.smali_dir = None
@@ -65,14 +72,14 @@ class Patcher:
 		# write headers
 		if not os.path.exists('data/stats.csv'):
 			with open('data/stats.csv', 'a') as fd:
-				fd.write('"date_id","mod_ver","manufacturer","model","device","rom","release","sdk","apk_name","on_unlocked_value","smali_dir","strategy","status","time"\n')
+				fd.write('"date_id","repatch","repatch_date_id","mod_ver","manufacturer","model","device","rom","release","sdk","apk_dir","apk_name","on_unlocked_value","smali_dir","strategy","status","time"\n')
 
 		with open('data/stats.csv', 'a') as fd:
 			ts_str = os.path.basename(self.extract_dir)
 			date_iso = datetime.fromtimestamp(int(ts_str)).isoformat()
 			smali_dir = None if status == 'fail-disassemble' else os.path.basename(self.smali_dir)
 			on_unlocked_value = self.on_unlocked_value_and12 if self.on_unlocked_value_and12 is not None else self.on_unlocked_value_and13
-			fd.write(f'"{self.date_id}","{self.mod_ver}","{self.manufacturer}","{self.model}","{self.device}","{self.rom}","{self.release}","{self.sdk}","{self.apk_name}","{on_unlocked_value}","{smali_dir}","{self.strategy}","{status}","{date_iso}"\n')
+			fd.write(f'"{self.date_id}",{self.repatch}",{self.repatch_date_id}","{self.mod_ver}","{self.manufacturer}","{self.model}","{self.device}","{self.rom}","{self.release}","{self.sdk}","{self.apk_dir}","{self.apk_name}","{on_unlocked_value}","{smali_dir}","{self.strategy}","{status}","{date_iso}"\n')
 
 	def patch_ScreenStateHelper(self):
 		path = f'{self.smali_dir}/com/android/nfc/ScreenStateHelper.smali'
