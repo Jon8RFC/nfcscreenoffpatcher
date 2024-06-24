@@ -1,6 +1,6 @@
 # Start Jon8RFC's readme portion
 ## Docker setup on Windows
-I use this batch file I made to keep things simple and quick:
+I use this batch file I made to keep things simple and quick:  
 https://github.com/Jon8RFC/nfcscreenoffpatcher/blob/master/container_setup.bat
 You can do steps 1-2, then use the batch file.
 
