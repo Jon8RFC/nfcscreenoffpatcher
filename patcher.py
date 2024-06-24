@@ -1,4 +1,6 @@
-import os, shutil, subprocess
+import os
+import shutil
+import subprocess
 from datetime import datetime
 from dotenv import dotenv_values
 
@@ -27,7 +29,7 @@ class Patcher:
 		return Patcher(extract_dir, date_id, repatch, repatch_date_id, mod_ver, manufacturer, model, device, rom, release, sdk, apk_dir, apk_name, 'classic')
 
 	def __init__(self, extract_dir, date_id, repatch, repatch_date_id, mod_ver, manufacturer, model, device, rom, release, sdk, apk_dir, apk_name, strategy):
-    
+
 		self.extract_dir = extract_dir
 		self.date_id = date_id
 		self.repatch = repatch
@@ -79,7 +81,7 @@ class Patcher:
 			date_iso = datetime.fromtimestamp(int(ts_str)).isoformat()
 			smali_dir = None if status == 'fail-disassemble' else os.path.basename(self.smali_dir)
 			on_unlocked_value = self.on_unlocked_value_and12 if self.on_unlocked_value_and12 is not None else self.on_unlocked_value_and13
-			fd.write(f'"{self.date_id}",{self.repatch}",{self.repatch_date_id}","{self.mod_ver}","{self.manufacturer}","{self.model}","{self.device}","{self.rom}","{self.release}","{self.sdk}","{self.apk_dir}","{self.apk_name}","{on_unlocked_value}","{smali_dir}","{self.strategy}","{status}","{date_iso}"\n')
+			fd.write(f'"{self.date_id}","{self.repatch}","{self.repatch_date_id}","{self.mod_ver}","{self.manufacturer}","{self.model}","{self.device}","{self.rom}","{self.release}","{self.sdk}","{self.apk_dir}","{self.apk_name}","{on_unlocked_value}","{smali_dir}","{self.strategy}","{status}","{date_iso}"\n')
 
 	def patch_ScreenStateHelper(self):
 		path = f'{self.smali_dir}/com/android/nfc/ScreenStateHelper.smali'
