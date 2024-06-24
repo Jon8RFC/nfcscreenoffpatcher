@@ -5,6 +5,7 @@
 * minor things
 #### ADD
 * extra .env info to hopefully support more devices
+  * track the android 13 & 14 patch usage
 
 ### v1.1.2 (jon8rfc) 2024-03-08
 #### FIX
