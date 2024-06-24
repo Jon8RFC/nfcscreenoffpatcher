@@ -1,5 +1,11 @@
 # Changelog
 
+### v1.1.3 (jon8rfc) 2024-xx-xx
+#### FIX
+* minor things
+#### ADD
+* extra .env info to hopefully support more devices
+
 ### v1.1.2 (jon8rfc) 2024-03-08
 #### FIX
 * Android 13 and prior patching
