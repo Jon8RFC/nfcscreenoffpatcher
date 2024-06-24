@@ -2,7 +2,7 @@
 EXTRACT_DIR=$1
 APK_NAME=$2
 
-cd "$EXTRACT_DIR/"
+cd "$EXTRACT_DIR/" || exit 1
 SDK=$(grep '^SDK=' .env | cut -d'=' -f2)
 if [ "$SDK" -gt 33 ]; then
 	apktool_android14 b -f "$APK_NAME/" -o "${APK_NAME}_mod.apk"

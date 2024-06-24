@@ -2,7 +2,7 @@
 EXTRACT_DIR=$1
 APK_NAME=$2
 
-cd "$EXTRACT_DIR/"
+cd "$EXTRACT_DIR/" || exit 1
 echo ""
 echo ""
 cat .env
